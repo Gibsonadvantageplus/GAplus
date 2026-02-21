@@ -1,299 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gibson Advantage Plus | Professional Maid & Sanitation Services</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-  :root{
-    --bg1:#021428;
-    --bg2:#0a2c54;
-    --card: rgba(255,255,255,0.08);
-    --card2: rgba(255,255,255,0.10);
-    --glow: rgba(0,170,255,0.45);
-    --accent1:#00aaff;
-    --accent2:#0044ff;
-    --text:#ffffff;
-    --muted: rgba(255,255,255,0.82);
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #021428, #0a2c54);
+    color: white;
+    overflow-x: hidden;
   }
 
-  * { box-sizing: border-box; }
-
-  body{
-    margin:0;
-    font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    color:var(--text);
-    background:
-      radial-gradient(1200px 600px at 10% 0%, rgba(0,170,255,0.22), transparent 60%),
-      radial-gradient(1000px 500px at 90% 10%, rgba(0,68,255,0.20), transparent 55%),
-      linear-gradient(135deg, var(--bg1), var(--bg2));
-    overflow-x:hidden;
+  .container {
+    width: 92%;
+    max-width: 1100px;
+    margin: auto;
   }
 
-  .container{
-    width:min(1100px, 92%);
-    margin:0 auto;
+  /* ===== HERO ===== */
+  .hero {
+    text-align: center;
+    padding: 60px 20px 40px;
   }
 
-  /* Top glow strip */
-  .topglow{
-    position:fixed;
-    inset:0 0 auto 0;
-    height:140px;
-    background: radial-gradient(700px 130px at 50% 0%, rgba(0,170,255,0.30), transparent 70%);
-    pointer-events:none;
-    z-index:0;
-  }
-
-  /* HERO */
-  .hero{
-    position:relative;
-    z-index:1;
-    padding: 56px 0 26px;
-    text-align:center;
-  }
-
-  .hero-card{
-    border-radius: 26px;
-    padding: 18px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
-    box-shadow: 0 30px 80px rgba(0,0,0,0.55);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.14);
-    overflow:hidden;
-  }
-
-  .hero img{
-    width:100%;
+  .hero img {
+    width: 100%;
     max-width: 980px;
     border-radius: 20px;
-    display:block;
-    margin:0 auto;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.55);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
   }
 
-  /* “3D-ish” headline */
-  .big-title{
-    margin: 26px 0 10px;
-    font-family:'Bebas Neue',sans-serif;
-    font-size: clamp(44px, 7vw, 84px);
+  .title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 7vw, 86px);
     letter-spacing: 3px;
-    line-height: 0.95;
-    background: linear-gradient(180deg, #ffffff, #bde8ff 45%, #69c2ff);
-    -webkit-background-clip:text;
-    background-clip:text;
+    background: linear-gradient(to bottom, #ffffff, #6cc4ff);
+    -webkit-background-clip: text;
     color: transparent;
-    text-shadow:
-      0 2px 0 rgba(0,0,0,0.25),
-      0 16px 40px rgba(0,0,0,0.55);
+    text-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    margin-top: 30px;
   }
 
-  .subtitle{
-    margin: 0 auto;
-    max-width: 820px;
-    font-size: 16px;
-    color: var(--muted);
+  .subtitle {
+    font-size: 18px;
+    margin-top: 10px;
+    opacity: 0.9;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
   }
 
-  .cta-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    justify-content:center;
-    margin-top: 22px;
+  .buttons {
+    margin-top: 30px;
   }
 
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    padding: 15px 20px;
-    border-radius: 14px;
-    text-decoration:none;
+  .btn {
+    display: inline-block;
+    padding: 15px 25px;
+    margin: 10px;
+    border-radius: 12px;
+    text-decoration: none;
     font-weight: 800;
-    transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
-    border: 1px solid rgba(255,255,255,0.12);
-    min-width: 240px;
+    transition: 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.15);
   }
 
-  .btn-primary{
-    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  .primary {
+    background: linear-gradient(135deg, #00aaff, #0044ff);
     color: white;
-    box-shadow: 0 18px 40px rgba(0,0,0,0.35), 0 0 0 0 rgba(0,170,255,0.0);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
   }
 
-  .btn-secondary{
-    background: rgba(255,255,255,0.10);
+  .secondary {
+    background: rgba(255,255,255,0.12);
     color: white;
   }
 
-  .btn:hover{
-    transform: translateY(-2px);
-    filter: brightness(1.04);
+  .btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.05);
   }
 
-  .btn-primary:hover{
-    box-shadow: 0 18px 40px rgba(0,0,0,0.35), 0 0 24px 2px rgba(0,170,255,0.22);
-  }
-
-  /* Sticky Call button (mobile-friendly) */
-  .sticky-call{
+  /* Sticky Call Button */
+  .sticky-call {
     position: fixed;
     right: 14px;
     bottom: 14px;
-    z-index: 50;
+    z-index: 999;
   }
-  .sticky-call a{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding: 14px 16px;
-    border-radius: 999px;
-    font-weight: 800;
-    text-decoration:none;
-    color:#fff;
+
+  .sticky-call a {
     background: linear-gradient(135deg, #1fd0ff, #1b5bff);
+    padding: 14px 18px;
+    border-radius: 999px;
+    color: white;
+    font-weight: 900;
+    text-decoration: none;
     box-shadow: 0 18px 40px rgba(0,0,0,0.55);
-    border: 1px solid rgba(255,255,255,0.16);
+    border: 1px solid rgba(255,255,255,0.18);
   }
 
-  /* SECTION */
-  .section{
-    position:relative;
-    z-index:1;
-    padding: 52px 0;
-    text-align:center;
+  /* ===== SERVICES SECTION (WITH IMAGES) ===== */
+  .services-section {
+    padding: 80px 20px;
+    background: linear-gradient(180deg, #071c33, #102b4a);
+    text-align: center;
   }
 
-  .section h2{
-    font-family:'Bebas Neue',sans-serif;
-    font-size: 44px;
+  .services-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: white;
     letter-spacing: 2px;
-    margin: 0 0 18px;
-    text-shadow: 0 14px 40px rgba(0,0,0,0.5);
+    text-shadow: 0 10px 30px rgba(0,0,0,0.55);
   }
 
-  .section p.lead{
-    margin: 0 auto 28px;
-    max-width: 860px;
-    color: var(--muted);
+  .services-section .lead {
+    max-width: 900px;
+    margin: 0 auto 50px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    font-size: 16px;
   }
 
-  /* SERVICES GRID WITH IMAGES */
-  .services{
-    display:grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 16px;
-    margin-top: 18px;
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    max-width: 1200px;
+    margin: auto;
   }
 
-  .service-tile{
-    grid-column: span 12;
-    height: 260px;
-    border-radius: 22px;
-    overflow:hidden;
-    position:relative;
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0 22px 55px rgba(0,0,0,0.55);
-    border: 1px solid rgba(255,255,255,0.12);
-    transform: translateZ(0);
-    transition: transform .22s ease, box-shadow .22s ease;
+  .service-card {
+    background: rgba(255,255,255,0.07);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+    transition: 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.14);
   }
 
-  @media (min-width: 700px){
-    .service-tile{ grid-column: span 6; height: 290px; }
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 26px 70px rgba(0,0,0,0.6);
   }
 
-  .service-tile:hover{
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 26px 70px rgba(0,0,0,0.62), 0 0 26px rgba(0,170,255,0.15);
+  .service-card img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    display: block;
   }
 
-  .service-overlay{
-    position:absolute;
-    inset:0;
-    background:
-      radial-gradient(900px 300px at 10% 0%, rgba(0,170,255,0.28), transparent 60%),
-      linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.08) 100%);
-    display:flex;
-    align-items:flex-end;
-    padding: 18px 18px 16px;
-  }
-
-  .service-content{
-    text-align:left;
-    width:100%;
-  }
-
-  .service-content h3{
-    margin:0 0 6px;
+  .service-card h3 {
+    margin: 18px 18px 8px;
+    color: white;
     font-size: 20px;
     font-weight: 900;
-    letter-spacing: .2px;
   }
 
-  .service-content p{
-    margin:0;
-    color: rgba(255,255,255,0.86);
-    font-size: 14px;
-    line-height: 1.35;
-    max-width: 520px;
+  .service-card p {
+    margin: 0;
+    padding: 0 18px 24px;
+    color: #c5d8f5;
+    line-height: 1.5;
   }
 
-  /* CONTACT */
-  .contact-box{
-    margin-top: 18px;
-    padding: 26px;
-    border-radius: 22px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
-    border: 1px solid rgba(255,255,255,0.14);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    backdrop-filter: blur(8px);
+  /* ===== CONTACT ===== */
+  .contact {
+    padding: 80px 20px;
+    text-align: center;
+    background: linear-gradient(180deg, #102b4a, #021428);
   }
 
-  .contact-box .big{
-    font-size: 34px;
-    font-weight: 900;
-    letter-spacing: .3px;
-    margin: 0 0 10px;
+  .contact h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 46px;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
   }
 
-  .contact-box a{
+  .contact p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.8;
+  }
+
+  .contact a {
     color: #7fd4ff;
     font-weight: 900;
-    text-decoration:none;
+    text-decoration: none;
   }
 
-  /* Footer image */
-  .footer-image{
-    margin: 42px 0 68px;
+  /* ===== FOOTER COLLAGE ===== */
+  .footer-image {
+    margin-top: 40px;
   }
 
-  .footer-image img{
-    width:100%;
-    border-radius: 22px;
-    box-shadow: 0 22px 60px rgba(0,0,0,0.6);
-    border: 1px solid rgba(255,255,255,0.12);
+  .footer-image img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
   }
 
-  /* Small note */
-  .note{
-    font-size: 12px;
-    color: rgba(255,255,255,0.60);
-    margin-top: 12px;
+  /* ===== BRAND CLOSE (LOGO) ===== */
+  .brand-close {
+    padding: 100px 20px;
+    background: #000;
+    text-align: center;
+  }
+
+  .brand-container img {
+    max-width: 520px;
+    width: 92%;
+    margin-bottom: 40px;
+    filter: drop-shadow(0 10px 25px rgba(0, 102, 255, 0.6));
+  }
+
+  .brand-close h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    color: white;
+    margin-bottom: 14px;
+    letter-spacing: 2px;
+  }
+
+  .brand-close p {
+    color: #7fb3ff;
+    margin-bottom: 34px;
+    font-size: 18px;
+  }
+
+  .cta-final {
+    display: inline-block;
+    padding: 18px 42px;
+    background: linear-gradient(90deg, #1e90ff, #005eff);
+    color: white;
+    font-weight: 900;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s ease;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.6);
+  }
+
+  .cta-final:hover {
+    transform: scale(1.05);
   }
 </style>
 </head>
 
 <body>
-<div class="topglow"></div>
 
-<!-- sticky call button -->
+<!-- Sticky Call Button -->
 <div class="sticky-call">
   <a href="tel:5856239676">Call 585-623-9676</a>
 </div>
@@ -301,126 +267,101 @@
 <div class="container">
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-card">
-      <img src="hero.png" alt="Gibson Advantage Plus hero" />
+  <div class="hero">
+    <img src="hero.png" alt="Gibson Advantage Plus Hero">
 
-      <div class="big-title">GIBSON ADVANTAGE PLUS</div>
-      <div class="subtitle">
-        Professional Maid Services • Residential Deep Cleaning • Move-In/Move-Out • Commercial Cleaning • Janitorial •
-        <strong>Sanitation & Disinfection</strong>
-      </div>
+    <div class="title">GIBSON ADVANTAGE PLUS</div>
 
-      <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:WeClean@gibsonadvantage.org?subject=Quote%20Request">
-          Contact Us for Your Quote Today
-        </a>
-        <a class="btn btn-secondary" href="tel:5856239676">
-          Tap to Call: 585-623-9676
-        </a>
-      </div>
-
-      <div class="note">Fast quotes • Reliable service • Clean you can see — sanitation you can trust</div>
+    <div class="subtitle">
+      Professional Maid Services • Residential Deep Cleaning • Move-In/Move-Out • Commercial Cleaning • Maintenance/Janitorial •
+      <strong>Sanitize • Disinfect • Protect</strong>
     </div>
-  </section>
 
-  <!-- SERVICES -->
-  <section class="section">
-    <h2>Our Services</h2>
-    <p class="lead">
-      At Gibson Advantage Plus, we don’t just clean — we sanitize, disinfect, and protect.
-      Our trained professionals use high-quality products and proven techniques to eliminate dirt, germs, and buildup at the source.
-    </p>
+    <div class="buttons">
+      <a href="mailto:WeClean@gibsonadvantage.org?subject=Quote Request" class="btn primary">
+        Contact Us for Your Quote Today
+      </a>
 
-    <div class="services">
-      <!-- Maid Services (Unsplash free photo page id: u8knk6Hl8JA) -->
-      <div class="service-tile" style="background-image:url('https://source.unsplash.com/u8knk6Hl8JA/1400x900');">
-        <div class="service-overlay">
-          <div class="service-content">
-            <h3>Professional Maid Services</h3>
-            <p>Routine or recurring cleaning to keep your home spotless, fresh, and guest-ready.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Deep Cleaning (Unsplash free photo page id: __ZMnefoI3k) -->
-      <div class="service-tile" style="background-image:url('https://source.unsplash.com/__ZMnefoI3k/1400x900');">
-        <div class="service-overlay">
-          <div class="service-content">
-            <h3>Residential Deep Cleaning</h3>
-            <p>Top-to-bottom detail cleaning that restores shine and removes buildup in key areas.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Move-in/out (Unsplash free photo page id: ZX9GN7tQmWI) -->
-      <div class="service-tile" style="background-image:url('https://source.unsplash.com/ZX9GN7tQmWI/1400x900');">
-        <div class="service-overlay">
-          <div class="service-content">
-            <h3>Move-In / Move-Out Cleaning</h3>
-            <p>Perfect for apartments and homes — we reset the space so it’s ready for the next chapter.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Commercial cleaning vibe (window cleaners; Unsplash free photo page id: SBdgqsJfS7I) -->
-      <div class="service-tile" style="background-image:url('https://source.unsplash.com/SBdgqsJfS7I/1400x900');">
-        <div class="service-overlay">
-          <div class="service-content">
-            <h3>Commercial Cleaning</h3>
-            <p>Professional cleaning for offices and businesses — a clean workplace makes a strong impression.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Janitorial (mopping; Unsplash free photo page id: 4pOfO0XUybs) -->
-      <div class="service-tile" style="background-image:url('https://source.unsplash.com/4pOfO0XUybs/1400x900');">
-        <div class="service-overlay">
-          <div class="service-content">
-            <h3>Maintenance / Janitorial Services</h3>
-            <p>Reliable recurring service for high-traffic areas — floors, restrooms, breakrooms, and more.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sanitation / Disinfection (lab disinfect spray; Unsplash free photo page id: RkG7wp75b48) -->
-      <div class="service-tile" style="background-image:url('https://source.unsplash.com/RkG7wp75b48/1400x900');">
-        <div class="service-overlay">
-          <div class="service-content">
-            <h3>Sanitation & Disinfection</h3>
-            <p>We sanitize and disinfect high-touch surfaces to reduce germs and help protect your space.</p>
-          </div>
-        </div>
-      </div>
+      <a href="tel:5856239676" class="btn secondary">
+        Tap to Call 585-623-9676
+      </a>
     </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section">
-    <h2>Contact Us Today</h2>
-    <div class="contact-box">
-      <div class="big">Get a Quote Fast</div>
-      <div style="font-size:16px;color:var(--muted);line-height:1.7">
-        Call: <a href="tel:5856239676">585-623-9676</a><br/>
-        Email: <a href="mailto:WeClean@gibsonadvantage.org">WeClean@gibsonadvantage.org</a>
-      </div>
-
-      <div class="cta-row" style="margin-top:18px;">
-        <a class="btn btn-primary" href="mailto:WeClean@gibsonadvantage.org?subject=Quote%20Request">
-          Email for a Quote
-        </a>
-        <a class="btn btn-secondary" href="tel:5856239676">
-          Call Now
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER IMAGE -->
-  <div class="footer-image">
-    <img src="footer-collage.png" alt="Gibson Advantage Plus service collage" />
   </div>
 
 </div>
+
+<!-- SERVICES SECTION -->
+<section class="services-section">
+  <h2>Our Services</h2>
+  <p class="lead">
+    At Gibson Advantage Plus, we don’t just clean — we sanitize, disinfect, and protect.
+    Our trained cleaning professionals use high-quality products and proven sanitation techniques
+    to eliminate dirt, germs, and buildup at the source.
+  </p>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <img src="maid.jpg" alt="Professional Maid Services">
+      <h3>Professional Maid Services</h3>
+      <p>Routine and detailed cleaning to keep your home spotless.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="deep-clean.jpg" alt="Residential Deep Cleaning">
+      <h3>Residential Deep Cleaning</h3>
+      <p>Thorough top-to-bottom cleaning that restores shine and freshness.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="move-in-out.jpg" alt="Move-In Move-Out Cleaning">
+      <h3>Move-In / Move-Out Cleaning</h3>
+      <p>Make your transition easier with a complete reset clean.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="commercial.jpg" alt="Commercial Cleaning">
+      <h3>Commercial Cleaning</h3>
+      <p>Professional office cleaning designed for safety and cleanliness.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="janitorial.jpg" alt="Janitorial Services">
+      <h3>Maintenance / Janitorial Services</h3>
+      <p>Reliable ongoing maintenance for high-traffic businesses.</p>
+    </div>
+
+    <div class="service-card">
+      <img src="sanitation.jpg" alt="Sanitation and Disinfection">
+      <h3>Sanitation & Disinfection</h3>
+      <p>We sanitize and disinfect high-touch areas to help protect your space.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact" id="contact">
+  <h2>Contact Us Today</h2>
+  <p>
+    Call: <a href="tel:5856239676">585-623-9676</a><br>
+    Email: <a href="mailto:WeClean@gibsonadvantage.org">WeClean@gibsonadvantage.org</a>
+  </p>
+
+  <div class="container footer-image">
+    <img src="footer-collage.png" alt="Gibson Advantage Plus Service Collage">
+  </div>
+</section>
+
+<!-- BRAND CLOSE + LOGO -->
+<section class="brand-close">
+  <div class="brand-container">
+    <img src="ga-logo.jpg" alt="Gibson Advantage Plus Logo">
+    <h2>Experience The Advantage</h2>
+    <p>Professional • Reliable • Detailed • Trusted</p>
+    <a href="tel:5856239676" class="cta-final">Call 585-623-9676</a>
+  </div>
+</section>
+
 </body>
 </html>
