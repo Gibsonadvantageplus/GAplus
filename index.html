@@ -1,367 +1,720 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gibson Advantage Plus | Professional Maid & Sanitation Services</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gibson Advantage Plus | Premium Cleaning & Sanitation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
-  body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, #021428, #0a2c54);
+  :root{
+    --bg0:#040b18;
+    --bg1:#061b33;
+    --bg2:#0a2c54;
+    --glass: rgba(255,255,255,.08);
+    --glass2: rgba(255,255,255,.10);
+    --stroke: rgba(255,255,255,.14);
+    --shadow: 0 28px 90px rgba(0,0,0,.55);
+    --shadow2: 0 18px 55px rgba(0,0,0,.45);
+    --blue:#1fd0ff;
+    --blue2:#1b5bff;
+    --silver:#e9f2ff;
+    --muted: rgba(255,255,255,.82);
+    --muted2: rgba(255,255,255,.68);
+    --radius: 22px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:white;
+    background: radial-gradient(1200px 700px at 12% 0%, rgba(31,208,255,.18), transparent 62%),
+                radial-gradient(900px 600px at 92% 6%, rgba(27,91,255,.16), transparent 58%),
+                linear-gradient(135deg, var(--bg0), var(--bg2));
+    overflow-x:hidden;
+  }
+
+  /* ===== Animated Premium Background ===== */
+  .bg-anim{
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events:none;
+    background:
+      radial-gradient(900px 550px at 10% 15%, rgba(31,208,255,.18), transparent 62%),
+      radial-gradient(900px 650px at 88% 18%, rgba(27,91,255,.16), transparent 62%),
+      linear-gradient(135deg, var(--bg0), var(--bg2));
+    filter: saturate(1.08);
+  }
+
+  .bg-anim::before{
+    content:"";
+    position:absolute;
+    inset:-40%;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(31,208,255,.22), transparent 30%),
+      radial-gradient(circle at 80% 30%, rgba(27,91,255,.20), transparent 34%),
+      radial-gradient(circle at 45% 70%, rgba(255,255,255,.06), transparent 36%);
+    animation: drift 18s ease-in-out infinite;
+    transform: translate3d(0,0,0);
+  }
+
+  .bg-anim::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: linear-gradient(120deg, rgba(31,208,255,.10), rgba(27,91,255,.10), rgba(31,208,255,.10));
+    background-size: 300% 300%;
+    animation: gradientMove 16s ease infinite;
+    mix-blend-mode: screen;
+    opacity:.55;
+  }
+
+  @keyframes drift{
+    0%   { transform: translate(-2%, -2%) scale(1.02); }
+    50%  { transform: translate(2%, 3%) scale(1.06); }
+    100% { transform: translate(-2%, -2%) scale(1.02); }
+  }
+  @keyframes gradientMove{
+    0%{ background-position: 0% 50%; }
+    50%{ background-position: 100% 50%; }
+    100%{ background-position: 0% 50%; }
+  }
+
+  /* Floating sparkles */
+  .sparkles{
+    position: fixed;
+    inset:0;
+    z-index:-2;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .sparkles span{
+    position:absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.35);
+    box-shadow: 0 0 16px rgba(31,208,255,.45);
+    opacity:.55;
+    animation: floatUp linear infinite;
+    filter: blur(.2px);
+  }
+  @keyframes floatUp{
+    from{ transform: translateY(120vh) translateX(0) scale(.8); opacity: 0; }
+    10%{ opacity: .65; }
+    90%{ opacity: .65; }
+    to{ transform: translateY(-25vh) translateX(40px) scale(1.2); opacity: 0; }
+  }
+
+  /* ===== Layout helpers ===== */
+  .wrap{ width:min(1180px, 92vw); margin:0 auto; }
+  .glass{
+    background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+    border: 1px solid var(--stroke);
+    border-radius: var(--radius);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow);
+  }
+  .section{
+    padding: 80px 0;
+    position:relative;
+  }
+
+  /* ===== Top bar ===== */
+  .topbar{
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(4,11,24,.55);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,.10);
+  }
+  .topbar .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap: 14px;
+  }
+  .brand-mini{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    font-weight: 900;
+    letter-spacing: .3px;
+    opacity:.92;
+  }
+  .brand-dot{
+    width:10px;height:10px;border-radius:999px;
+    background: linear-gradient(135deg, var(--blue), var(--blue2));
+    box-shadow: 0 0 18px rgba(31,208,255,.45);
+  }
+  nav{
+    display:flex;
+    gap: 16px;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+  nav a{
+    color: rgba(255,255,255,.85);
+    text-decoration:none;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .2px;
+    padding: 10px 12px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    transition: .2s ease;
+  }
+  nav a:hover{
+    border-color: rgba(255,255,255,.14);
+    background: rgba(255,255,255,.06);
     color: white;
-    overflow-x: hidden;
   }
 
-  .container {
-    width: 92%;
-    max-width: 1100px;
-    margin: auto;
+  /* ===== Hero ===== */
+  .hero{
+    padding: 42px 0 18px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 22px;
+    align-items:center;
+  }
+  @media (max-width: 960px){
+    .hero-grid{ grid-template-columns: 1fr; }
+  }
+  .hero-copy{
+    padding: 26px;
   }
 
-  /* ===== HERO ===== */
-  .hero {
-    text-align: center;
-    padding: 60px 20px 40px;
-  }
-
-  .hero img {
-    width: 100%;
-    max-width: 980px;
-    border-radius: 20px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
-  }
-
-  .title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(48px, 7vw, 86px);
+  .title3d{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(46px, 6.4vw, 92px);
     letter-spacing: 3px;
-    background: linear-gradient(to bottom, #ffffff, #6cc4ff);
+    line-height: .92;
+    margin: 0;
+    background: linear-gradient(180deg, #ffffff 0%, #cfe9ff 45%, #6cc4ff 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    margin-top: 30px;
+    text-shadow:
+      0 2px 0 rgba(255,255,255,.22),
+      0 14px 0 rgba(8,24,50,.28),
+      0 28px 55px rgba(0,0,0,.62);
+  }
+  .sub{
+    margin: 10px 0 0;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 600;
+  }
+  .pill-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .pill{
+    padding: 10px 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    font-weight: 700;
+    font-size: 13px;
+    color: rgba(255,255,255,.90);
   }
 
-  .subtitle {
-    font-size: 18px;
-    margin-top: 10px;
-    opacity: 0.9;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.5;
+  .cta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap: 10px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    text-decoration:none;
+    font-weight: 900;
+    letter-spacing: .2px;
+    border: 1px solid rgba(255,255,255,.14);
+    transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+    min-width: 240px;
+  }
+  .btn:hover{ transform: translateY(-2px); filter: brightness(1.05); }
+  .btn-primary{
+    background: linear-gradient(135deg, var(--blue), var(--blue2));
+    color: white;
+    box-shadow: 0 18px 40px rgba(0,0,0,.40), 0 0 0 rgba(31,208,255,0);
+  }
+  .btn-primary:hover{ box-shadow: 0 18px 40px rgba(0,0,0,.40), 0 0 22px rgba(31,208,255,.22); }
+  .btn-ghost{
+    background: rgba(255,255,255,.08);
+    color: white;
+  }
+  .hero-media{
+    padding: 14px;
+  }
+  .hero-img{
+    width:100%;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.14);
+    box-shadow: 0 28px 75px rgba(0,0,0,.58);
+    display:block;
   }
 
-  .buttons {
-    margin-top: 30px;
+  /* Trust bar */
+  .trustbar{
+    margin-top: 14px;
+    display:flex;
+    gap: 12px;
+    align-items:center;
+    flex-wrap:wrap;
   }
-
-  .btn {
-    display: inline-block;
-    padding: 15px 25px;
-    margin: 10px;
+  .mwbe{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: var(--shadow2);
+  }
+  .mwbe img{
+    width: 54px; height: 54px;
+    object-fit: contain;
     border-radius: 12px;
-    text-decoration: none;
-    font-weight: 800;
-    transition: 0.3s ease;
-    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,.06);
+    padding: 6px;
+  }
+  .mwbe strong{
+    display:block;
+    font-size: 14px;
+    letter-spacing: .2px;
+  }
+  .mwbe span{
+    display:block;
+    font-size: 12px;
+    color: var(--muted2);
+    margin-top: 2px;
   }
 
-  .primary {
-    background: linear-gradient(135deg, #00aaff, #0044ff);
-    color: white;
-    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-  }
-
-  .secondary {
-    background: rgba(255,255,255,0.12);
-    color: white;
-  }
-
-  .btn:hover {
-    transform: translateY(-3px);
-    filter: brightness(1.05);
-  }
-
-  /* Sticky Call Button */
-  .sticky-call {
+  /* Sticky Call */
+  .sticky-call{
     position: fixed;
     right: 14px;
     bottom: 14px;
-    z-index: 999;
+    z-index: 60;
   }
-
-  .sticky-call a {
-    background: linear-gradient(135deg, #1fd0ff, #1b5bff);
-    padding: 14px 18px;
+  .sticky-call a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding: 14px 16px;
     border-radius: 999px;
     color: white;
     font-weight: 900;
-    text-decoration: none;
-    box-shadow: 0 18px 40px rgba(0,0,0,0.55);
-    border: 1px solid rgba(255,255,255,0.18);
+    text-decoration:none;
+    background: linear-gradient(135deg, var(--blue), var(--blue2));
+    border: 1px solid rgba(255,255,255,.16);
+    box-shadow: 0 22px 55px rgba(0,0,0,.58);
+    transition: transform .18s ease, filter .18s ease;
   }
+  .sticky-call a:hover{ transform: translateY(-2px); filter: brightness(1.06); }
 
-  /* ===== SERVICES SECTION (WITH IMAGES) ===== */
-  .services-section {
-    padding: 80px 20px;
-    background: linear-gradient(180deg, #071c33, #102b4a);
-    text-align: center;
-  }
-
-  .services-section h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    margin-bottom: 15px;
-    color: white;
+  /* ===== Headings ===== */
+  .section-title{
+    font-family:"Bebas Neue", sans-serif;
+    font-size: 46px;
     letter-spacing: 2px;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.55);
+    margin: 0 0 12px;
+    text-shadow: 0 18px 55px rgba(0,0,0,.55);
+  }
+  .lead{
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 980px;
   }
 
-  .services-section .lead {
-    max-width: 900px;
-    margin: 0 auto 50px;
-    color: rgba(255,255,255,0.85);
-    line-height: 1.6;
-    font-size: 16px;
+  /* ===== Services (premium image cards) ===== */
+  .services{
+    margin-top: 34px;
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+  }
+  .service{
+    grid-column: span 12;
+    border-radius: 22px;
+    overflow:hidden;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.06);
+    box-shadow: var(--shadow2);
+    position:relative;
+    transform-style: preserve-3d;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  @media (min-width: 820px){
+    .service{ grid-column: span 6; }
   }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 32px;
-    max-width: 1200px;
-    margin: auto;
+  .service:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 26px 80px rgba(0,0,0,.62), 0 0 26px rgba(31,208,255,.14);
   }
 
-  .service-card {
-    background: rgba(255,255,255,0.07);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.45);
-    transition: 0.4s ease;
-    border: 1px solid rgba(255,255,255,0.14);
-  }
-
-  .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 26px 70px rgba(0,0,0,0.6);
-  }
-
-  .service-card img {
-    width: 100%;
+  .service img{
+    width:100%;
     height: 360px;
     object-fit: cover;
-    display: block;
+    display:block;
+    filter: saturate(1.05) contrast(1.02);
+    transform: scale(1.03);
   }
 
-  .service-card h3 {
-    margin: 18px 18px 8px;
-    color: white;
+  .service .overlay{
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(900px 300px at 15% 10%, rgba(31,208,255,.22), transparent 60%),
+      linear-gradient(to top, rgba(0,0,0,.86) 0%, rgba(0,0,0,.38) 55%, rgba(0,0,0,.10) 100%);
+    display:flex;
+    align-items:flex-end;
+    padding: 18px;
+  }
+  .service h3{
+    margin:0 0 6px;
     font-size: 20px;
     font-weight: 900;
+    letter-spacing: .2px;
   }
-
-  .service-card p {
-    margin: 0;
-    padding: 0 18px 24px;
-    color: #c5d8f5;
-    line-height: 1.5;
-  }
-
-  /* ===== CONTACT ===== */
-  .contact {
-    padding: 80px 20px;
-    text-align: center;
-    background: linear-gradient(180deg, #102b4a, #021428);
-  }
-
-  .contact h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 46px;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-  }
-
-  .contact p {
-    font-size: 18px;
-    color: rgba(255,255,255,0.85);
-    line-height: 1.8;
-  }
-
-  .contact a {
-    color: #7fd4ff;
-    font-weight: 900;
-    text-decoration: none;
-  }
-
-  /* ===== FOOTER COLLAGE ===== */
-  .footer-image {
-    margin-top: 40px;
-  }
-
-  .footer-image img {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
-  }
-
-  /* ===== BRAND CLOSE (LOGO) ===== */
-  .brand-close {
-    padding: 100px 20px;
-    background: #000;
-    text-align: center;
-  }
-
-  .brand-container img {
+  .service p{
+    margin:0;
+    color: rgba(255,255,255,.86);
+    line-height: 1.45;
+    font-size: 14px;
     max-width: 520px;
-    width: 92%;
-    margin-bottom: 40px;
-    filter: drop-shadow(0 10px 25px rgba(0, 102, 255, 0.6));
   }
 
-  .brand-close h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 44px;
-    color: white;
-    margin-bottom: 14px;
+  /* ===== Contact ===== */
+  .contact-grid{
+    margin-top: 26px;
+    display:grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 16px;
+    align-items:stretch;
+  }
+  @media (max-width: 960px){
+    .contact-grid{ grid-template-columns: 1fr; }
+  }
+  .contact-card{
+    padding: 26px;
+  }
+  .contact-card a{
+    color: #bfe7ff;
+    font-weight: 900;
+    text-decoration:none;
+  }
+  .contact-card a:hover{ text-decoration: underline; }
+  .contact-card .big{
+    font-size: 18px;
+    font-weight: 900;
+    margin: 0 0 10px;
+  }
+
+  /* Footer collage */
+  .collage{
+    margin-top: 22px;
+  }
+  .collage img{
+    width:100%;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: var(--shadow2);
+    display:block;
+  }
+
+  /* Brand close */
+  .brand-close{
+    background: #000;
+    padding: 88px 0;
+    border-top: 1px solid rgba(255,255,255,.10);
+  }
+  .brand-box{
+    text-align:center;
+    padding: 22px;
+  }
+  .brand-box img{
+    width:min(560px, 92%);
+    border-radius: 18px;
+    box-shadow: 0 22px 70px rgba(0,0,0,.70);
+    border: 1px solid rgba(255,255,255,.12);
+    filter: drop-shadow(0 10px 28px rgba(27,91,255,.35));
+  }
+  .brand-box h2{
+    margin: 26px 0 12px;
+    font-family:"Bebas Neue", sans-serif;
+    font-size: 46px;
     letter-spacing: 2px;
   }
-
-  .brand-close p {
-    color: #7fb3ff;
-    margin-bottom: 34px;
-    font-size: 18px;
+  .brand-box p{
+    margin: 0 0 22px;
+    color: rgba(255,255,255,.72);
+    font-weight: 700;
   }
+  .btn-wide{ min-width: 260px; }
 
-  .cta-final {
-    display: inline-block;
-    padding: 18px 42px;
-    background: linear-gradient(90deg, #1e90ff, #005eff);
-    color: white;
-    font-weight: 900;
-    border-radius: 50px;
-    text-decoration: none;
-    font-size: 18px;
-    transition: 0.3s ease;
-    box-shadow: 0 18px 45px rgba(0,0,0,0.6);
+  /* ===== Scroll reveal animations ===== */
+  .reveal{
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .7s ease, transform .7s ease;
   }
-
-  .cta-final:hover {
-    transform: scale(1.05);
+  .reveal.show{
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
 </head>
 
 <body>
+<div class="bg-anim"></div>
 
-<!-- Sticky Call Button -->
+<!-- sparkles -->
+<div class="sparkles" aria-hidden="true">
+  <span style="left:6%;  animation-duration:16s; animation-delay:-2s;"></span>
+  <span style="left:14%; animation-duration:20s; animation-delay:-8s; width:5px;height:5px;"></span>
+  <span style="left:22%; animation-duration:18s; animation-delay:-11s; width:4px;height:4px;"></span>
+  <span style="left:33%; animation-duration:22s; animation-delay:-5s;"></span>
+  <span style="left:41%; animation-duration:19s; animation-delay:-12s; width:5px;height:5px;"></span>
+  <span style="left:53%; animation-duration:23s; animation-delay:-9s; width:4px;height:4px;"></span>
+  <span style="left:64%; animation-duration:17s; animation-delay:-6s;"></span>
+  <span style="left:72%; animation-duration:21s; animation-delay:-10s; width:5px;height:5px;"></span>
+  <span style="left:81%; animation-duration:19s; animation-delay:-7s; width:4px;height:4px;"></span>
+  <span style="left:90%; animation-duration:24s; animation-delay:-13s;"></span>
+</div>
+
+<!-- Sticky Call -->
 <div class="sticky-call">
   <a href="tel:5856239676">Call 585-623-9676</a>
 </div>
 
-<div class="container">
-
-  <!-- HERO -->
-  <div class="hero">
-    <img src="hero.png" alt="Gibson Advantage Plus Hero">
-
-    <div class="title">GIBSON ADVANTAGE PLUS</div>
-
-    <div class="subtitle">
-      Professional Maid Services • Residential Deep Cleaning • Move-In/Move-Out • Commercial Cleaning • Maintenance/Janitorial •
-      <strong>Sanitize • Disinfect • Protect</strong>
+<!-- Topbar -->
+<div class="topbar">
+  <div class="wrap row">
+    <div class="brand-mini">
+      <span class="brand-dot"></span>
+      <span>Gibson Advantage Plus</span>
     </div>
-
-    <div class="buttons">
-      <a href="mailto:WeClean@gibsonadvantage.org?subject=Quote Request" class="btn primary">
-        Contact Us for Your Quote Today
-      </a>
-
-      <a href="tel:5856239676" class="btn secondary">
-        Tap to Call 585-623-9676
-      </a>
-    </div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="#cert">MWBE</a>
+    </nav>
   </div>
-
 </div>
 
-<!-- SERVICES SECTION -->
-<section class="services-section">
-  <h2>Our Services</h2>
-  <p class="lead">
-    At Gibson Advantage Plus, we don’t just clean — we sanitize, disinfect, and protect.
-    Our trained cleaning professionals use high-quality products and proven sanitation techniques
-    to eliminate dirt, germs, and buildup at the source.
-  </p>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="glass hero-copy reveal">
+      <h1 class="title3d">GIBSON ADVANTAGE PLUS</h1>
+      <p class="sub">
+        Premium Maid & Cleaning Services with a <strong>Sanitation-First</strong> approach.
+        We don’t just clean — we sanitize, disinfect, and protect.
+      </p>
 
-  <div class="services-grid">
+      <div class="pill-row">
+        <span class="pill">Maid Services</span>
+        <span class="pill">Residential Deep Cleaning</span>
+        <span class="pill">Move-In / Move-Out</span>
+        <span class="pill">Commercial Cleaning</span>
+        <span class="pill">Maintenance / Janitorial</span>
+        <span class="pill">Sanitation & Disinfection</span>
+        <span class="pill">Special Event Cleaning</span>
+      </div>
 
-    <div class="service-card">
-      <img src="maid.jpg" alt="Professional Maid Services">
-      <h3>Professional Maid Services</h3>
-      <p>Routine and detailed cleaning to keep your home spotless.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:WeClean@gibsonadvantage.org?subject=Quote%20Request%20-%20Gibson%20Advantage%20Plus">
+          Contact Us for Your Quote Today
+        </a>
+        <a class="btn btn-ghost" href="tel:5856239676">
+          Tap to Call: 585-623-9676
+        </a>
+      </div>
+
+      <div class="trustbar" id="cert">
+        <div class="mwbe">
+          <img src="mwbe-stamp.png" alt="MWBE Certified stamp">
+          <div>
+            <strong>MWBE Certified</strong>
+            <span>Minority & Women-Owned Business</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="service-card">
-      <img src="deep-clean.jpg" alt="Residential Deep Cleaning">
-      <h3>Residential Deep Cleaning</h3>
-      <p>Thorough top-to-bottom cleaning that restores shine and freshness.</p>
+    <div class="glass hero-media reveal">
+      <img class="hero-img" src="hero.png" alt="Gibson Advantage Plus hero image">
     </div>
-
-    <div class="service-card">
-      <img src="move-in-out.jpg" alt="Move-In Move-Out Cleaning">
-      <h3>Move-In / Move-Out Cleaning</h3>
-      <p>Make your transition easier with a complete reset clean.</p>
-    </div>
-
-    <div class="service-card">
-      <img src="commercial.jpg" alt="Commercial Cleaning">
-      <h3>Commercial Cleaning</h3>
-      <p>Professional office cleaning designed for safety and cleanliness.</p>
-    </div>
-
-    <div class="service-card">
-      <img src="janitorial.jpg" alt="Janitorial Services">
-      <h3>Maintenance / Janitorial Services</h3>
-      <p>Reliable ongoing maintenance for high-traffic businesses.</p>
-    </div>
-
-    <div class="service-card">
-      <img src="sanitation.jpg" alt="Sanitation and Disinfection">
-      <h3>Sanitation & Disinfection</h3>
-      <p>We sanitize and disinfect high-touch areas to help protect your space.</p>
-    </div>
-
   </div>
 </section>
 
-<!-- CONTACT SECTION -->
-<section class="contact" id="contact">
-  <h2>Contact Us Today</h2>
-  <p>
-    Call: <a href="tel:5856239676">585-623-9676</a><br>
-    Email: <a href="mailto:WeClean@gibsonadvantage.org">WeClean@gibsonadvantage.org</a>
-  </p>
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="wrap">
+    <h2 class="section-title reveal">Luxury-Level Cleaning. Real-World Results.</h2>
+    <p class="lead reveal">
+      Our trained cleaning professionals use high-quality products and proven sanitation techniques to eliminate dirt,
+      germs, and buildup at the source — delivering a spotless finish that looks and feels premium.
+    </p>
 
-  <div class="container footer-image">
-    <img src="footer-collage.png" alt="Gibson Advantage Plus Service Collage">
+    <div class="services">
+      <article class="service reveal">
+        <img src="maid.jpg" alt="Professional Maid Services">
+        <div class="overlay">
+          <div>
+            <h3>Professional Maid Services</h3>
+            <p>Routine or recurring cleaning to keep your home consistently spotless and guest-ready.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <img src="deep-clean.jpg" alt="Residential Deep Cleaning">
+        <div class="overlay">
+          <div>
+            <h3>Residential Deep Cleaning</h3>
+            <p>Top-to-bottom detail cleaning that restores shine and tackles buildup in key areas.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <img src="move-in-out.jpg" alt="Move In Move Out Cleaning">
+        <div class="overlay">
+          <div>
+            <h3>Move-In / Move-Out Cleaning</h3>
+            <p>A full reset clean so your next chapter starts fresh — perfect for apartments and homes.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <img src="commercial.jpg" alt="Commercial Cleaning">
+        <div class="overlay">
+          <div>
+            <h3>Commercial Cleaning</h3>
+            <p>Professional cleaning for offices and businesses — clean, safe, and welcoming every day.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <img src="janitorial.jpg" alt="Maintenance and Janitorial Services">
+        <div class="overlay">
+          <div>
+            <h3>Maintenance / Janitorial Services</h3>
+            <p>Reliable recurring service for high-traffic areas — restrooms, floors, breakrooms, and more.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <img src="sanitation.jpg" alt="Sanitation and Disinfection">
+        <div class="overlay">
+          <div>
+            <h3>Sanitation & Disinfection</h3>
+            <p>High-touch surface sanitizing to reduce germs and help protect your environment.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <img src="special-event-cleaning.jpg" alt="Special Event Cleaning">
+        <div class="overlay">
+          <div>
+            <h3>Special Event Cleaning</h3>
+            <p>Pre-event and post-event cleanup for venues, conferences, parties, and corporate events.</p>
+          </div>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
-<!-- BRAND CLOSE + LOGO -->
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <h2 class="section-title reveal">Contact Us for Your Quote Today</h2>
+
+    <div class="contact-grid">
+      <div class="glass contact-card reveal">
+        <div class="big">Get a Quote Fast</div>
+        <div style="color:var(--muted); line-height:1.75;">
+          Call: <a href="tel:5856239676">585-623-9676</a><br>
+          Email: <a href="mailto:WeClean@gibsonadvantage.org">WeClean@gibsonadvantage.org</a>
+        </div>
+
+        <div class="cta-row" style="margin-top:18px;">
+          <a class="btn btn-primary btn-wide" href="mailto:WeClean@gibsonadvantage.org?subject=Quote%20Request%20-%20Gibson%20Advantage%20Plus&body=Hi%20Gibson%20Advantage%20Plus,%0A%0AI%20would%20like%20a%20quote%20for:%0A-%20Service%20type:%0A-%20Address%20(or%20city):%0A-%20Preferred%20date/time:%0A-%20Best%20phone%20number:%0A%0AThank%20you!">
+            Email for a Quote
+          </a>
+          <a class="btn btn-ghost btn-wide" href="tel:5856239676">
+            Call Now
+          </a>
+        </div>
+
+        <div style="margin-top:16px; color:var(--muted2); font-size:12px;">
+          MWBE Certified • Detail-Driven • Professional Results
+        </div>
+      </div>
+
+      <div class="glass contact-card reveal">
+        <div class="big">Service Collage</div>
+        <div class="collage">
+          <img src="footer-collage.png" alt="Service collage">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND CLOSE -->
 <section class="brand-close">
-  <div class="brand-container">
-    <img src="ga-logo.jpg" alt="Gibson Advantage Plus Logo">
-    <h2>Experience The Advantage</h2>
-    <p>Professional • Reliable • Detailed • Trusted</p>
-    <a href="tel:5856239676" class="cta-final">Call 585-623-9676</a>
+  <div class="wrap">
+    <div class="brand-box reveal">
+      <img src="ga-logo.jpg" alt="Gibson Advantage Plus logo">
+      <h2>Experience The Advantage</h2>
+      <p>Professional • Reliable • Detailed • Trusted</p>
+      <a class="btn btn-primary btn-wide" href="tel:5856239676">Call 585-623-9676</a>
+    </div>
   </div>
 </section>
+
+<script>
+  // Scroll reveal
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) e.target.classList.add('show');
+    });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+</script>
 
 </body>
 </html>
